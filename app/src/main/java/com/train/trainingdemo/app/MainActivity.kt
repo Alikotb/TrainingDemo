@@ -1,12 +1,12 @@
-package com.train.trainingdemo
+package com.train.trainingdemo.app
 
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -16,8 +16,12 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.scale
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.train.trainingdemo.R
+import com.train.trainingdemo.navigation.AppNavHost
 import com.train.trainingdemo.ui.theme.TrainingDemoTheme
-import org.osmdroid.config.Configuration
+import dagger.hilt.android.AndroidEntryPoint
 import org.osmdroid.events.MapEventsReceiver
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -26,19 +30,23 @@ import org.osmdroid.views.overlay.MapEventsOverlay
 import org.osmdroid.views.overlay.Marker
 
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Configuration.getInstance().userAgentValue = packageName
+//        Configuration.getInstance().userAgentValue = packageName
 
         enableEdgeToEdge()
         setContent {
-            TrainingDemoTheme {
+            navController = rememberNavController()
+            TrainingDemoTheme(darkTheme = isSystemInDarkTheme(), dynamicColor = false) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    OsmdroidMapView{lat, lon ->
-                        Toast.makeText(this, "asd ${lat} ,    ${lon}", Toast.LENGTH_SHORT).show()
-
-                    }
+                    AppNavHost(
+                        innerPadding = innerPadding,
+                        navController = navController,
+                    )
                 }
             }
         }

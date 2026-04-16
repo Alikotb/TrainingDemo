@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
@@ -98,4 +99,5 @@ dependencies {
 //    implementation(project(":home-module"))
 //    implementation(project(":search-module"))
     implementation(project(":splash"))
+    implementation(project(":home"))
 }

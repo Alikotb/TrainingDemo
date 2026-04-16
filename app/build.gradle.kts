@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -55,4 +58,36 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    //navigation
+    val nav_version = "2.9.6"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    //serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    //live data
+//    implementation("androidx.compose.runtime:runtime-livedata:1.9.2")
+
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
+//
+//    // Hilt Testing
+//    androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.2")
+//    kspAndroidTest("com.google.dagger:hilt-android-compiler:2.56.2")
+//
+//    testImplementation("com.google.dagger:hilt-android-testing:2.56.2")
+//    kspTest("com.google.dagger:hilt-android-compiler:2.56.2")
+
+
+    //lotti
+    implementation("com.airbnb.android:lottie-compose:6.6.9")
+//    implementation(project(":splash-module"))
+    implementation("org.osmdroid:osmdroid-android:6.1.16")
+
+    //connect modules
+//    implementation(project(":home-module"))
+//    implementation(project(":search-module"))
+    implementation(project(":splash"))
 }

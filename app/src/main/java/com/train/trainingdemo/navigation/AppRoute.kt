@@ -8,6 +8,7 @@ sealed class AppRoute {
 
     @Serializable
     object HomeRoute : AppRoute()
-
+    @Serializable
+    object MapRoute : AppRoute()
 
 }

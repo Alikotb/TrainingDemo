@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -18,8 +19,11 @@ import com.train.trainingdemo.presentation.view_model.HomeViewModel
 fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
+            Spacer(Modifier.height(64.dp))
+
             Text(
                 "HomeScreen",
                 style = MaterialTheme.typography.headlineLarge.copy(

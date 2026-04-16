@@ -93,11 +93,11 @@ dependencies {
     //lotti
     implementation("com.airbnb.android:lottie-compose:6.6.9")
 //    implementation(project(":splash-module"))
-    implementation("org.osmdroid:osmdroid-android:6.1.16")
 
     //connect modules
 //    implementation(project(":home-module"))
 //    implementation(project(":search-module"))
     implementation(project(":splash"))
     implementation(project(":home"))
+    implementation(project(":map"))
 }

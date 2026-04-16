@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "TrainingDemo"
 include(":app")
+include(":splash")

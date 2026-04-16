@@ -3,13 +3,12 @@ package com.train.trainingdemo.presentation.contract
 
 interface HomeContract {
     sealed class Intent {
-//        object NavigateToNext : Intent()
+        object NavigateToMap : Intent()
 //        object SaveFirstTime : Intent()
 
     }
 
     sealed interface Effect {
-//        object NavigateToHome : Effect
-//        object NavigateToOnBoarding : Effect
+        object NavigateToMap : Effect
     }
 }

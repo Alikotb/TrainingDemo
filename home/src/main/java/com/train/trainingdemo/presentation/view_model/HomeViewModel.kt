@@ -15,6 +15,11 @@ class HomeViewModel @Inject constructor(
     private val _effect = MutableSharedFlow<HomeContract.Effect>()
     val effect = _effect.asSharedFlow()
     fun onIntent(intent: HomeContract.Intent) {
+        when(intent){
+            HomeContract.Intent.NavigateToMap -> {
+                emitEffect(HomeContract.Effect.NavigateToMap)
+            }
+        }
 //        when (intent) {
 //            HomeContract.Intent.NavigateToNext -> {
 ////                if (getFirstTime())

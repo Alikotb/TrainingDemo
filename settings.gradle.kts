@@ -26,3 +26,4 @@ rootProject.name = "TrainingDemo"
 include(":app")
 include(":splash")
 include(":home")
+include(":map")

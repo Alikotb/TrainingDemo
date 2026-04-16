@@ -14,7 +14,7 @@ fun HomeNavHandler(
     LaunchedEffect(Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
-                HomeContract.Effect.NavigateToMap -> {
+                HomeContract.Effect.NavigateToMap  -> {
                     navController.navigate(AppRoute.MapRoute)
                 }
 

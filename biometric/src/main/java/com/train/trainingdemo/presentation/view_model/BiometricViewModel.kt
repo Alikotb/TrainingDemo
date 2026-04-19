@@ -1,27 +1,23 @@
 package com.train.trainingdemo.presentation.view_model
 
 import androidx.lifecycle.ViewModel
-import com.train.trainingdemo.presentation.contract.HomeContract
+import androidx.lifecycle.viewModelScope
+import com.train.trainingdemo.presentation.contract.BiometricContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import javax.inject.Inject
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class BiometricViewModel @Inject constructor(
 ) : ViewModel() {
-    private val _effect = MutableSharedFlow<HomeContract.Effect>()
+    private val _effect = MutableSharedFlow<BiometricContract.Effect>()
     val effect = _effect.asSharedFlow()
-    fun onIntent(intent: HomeContract.Intent) {
-        when (intent) {
-            HomeContract.Intent.NavigateToMap -> {
-                emitEffect(HomeContract.Effect.NavigateToMap)
-            }
-
-            HomeContract.Intent.NavigateToBiometric -> {
-                emitEffect(HomeContract.Effect.NavigateToBiometric)
+    fun onIntent(intent: BiometricContract.Intent) {
+        when(intent){
+            BiometricContract.Intent.NavigatePatternLock -> {
+                emitEffect(BiometricContract.Effect.NavigatePatternLock)
             }
         }
 //        when (intent) {
@@ -39,8 +35,7 @@ class HomeViewModel @Inject constructor(
 //            }
 //        }
     }
-
-    private fun emitEffect(effect: HomeContract.Effect) {
+    private fun emitEffect(effect: BiometricContract.Effect) {
         viewModelScope.launch {
             _effect.emit(effect)
         }

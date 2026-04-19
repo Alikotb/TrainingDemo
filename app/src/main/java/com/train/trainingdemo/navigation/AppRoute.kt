@@ -10,5 +10,9 @@ sealed class AppRoute {
     object HomeRoute : AppRoute()
     @Serializable
     object MapRoute : AppRoute()
+    @Serializable
+    object BiometricHome : AppRoute()
+    @Serializable
+    object PatternLock : AppRoute()
 
 }

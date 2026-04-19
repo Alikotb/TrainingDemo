@@ -69,6 +69,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.56.2")
     ksp("com.google.dagger:hilt-android-compiler:2.56.2")
 
+//    implementation ("com.github.AbyssSpecter:ComposeLock:1.0.0")
+
 
     implementation(project(":common"))
+
 }

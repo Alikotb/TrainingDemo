@@ -100,4 +100,6 @@ dependencies {
     implementation(project(":splash"))
     implementation(project(":home"))
     implementation(project(":map"))
+    implementation(project(":biometric"))
+    implementation(project(":common"))
 }

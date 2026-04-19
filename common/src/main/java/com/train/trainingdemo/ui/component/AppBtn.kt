@@ -1,4 +1,4 @@
-package com.train.trainingdemo.presentation.component
+package com.train.trainingdemo.ui.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeBtn(modifier: Modifier = Modifier, onClick: () -> Unit={},text:String="",) {
+fun AppBtn(modifier: Modifier = Modifier, onClick: () -> Unit={}, text:String="",) {
     Button(
         shape = RoundedCornerShape(8.dp),
         onClick = onClick,

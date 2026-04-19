@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.train.trainingdemo.presentation.component.HomeBtn
+import com.train.trainingdemo.ui.component.AppBtn
 import com.train.trainingdemo.presentation.contract.HomeContract
 import com.train.trainingdemo.presentation.view_model.HomeViewModel
 
@@ -34,10 +34,20 @@ fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
         }
         item {
             Spacer(Modifier.height(16.dp))
-            HomeBtn(
+            AppBtn(
                 text = "go to map",
                 onClick = {
                     viewModel.onIntent(HomeContract.Intent.NavigateToMap)
+                }
+            )
+        }
+
+        item {
+            Spacer(Modifier.height(16.dp))
+            AppBtn(
+                text = "go to biometric",
+                onClick = {
+                    viewModel.onIntent(HomeContract.Intent.NavigateToBiometric)
                 }
             )
         }

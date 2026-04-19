@@ -1,25 +1,23 @@
-package com.train.trainingdemo.navigation.home
+package com.train.trainingdemo.navigation.biometric
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import com.train.trainingdemo.navigation.AppRoute
-import com.train.trainingdemo.presentation.contract.HomeContract
-import com.train.trainingdemo.presentation.view_model.HomeViewModel
+import com.train.trainingdemo.presentation.contract.BiometricContract
+import com.train.trainingdemo.presentation.view_model.BiometricViewModel
 
 @Composable
-fun HomeNavHandler(
+fun BiometricNavHandler(
     navController: NavHostController,
-    viewModel: HomeViewModel,
+    viewModel: BiometricViewModel,
 ) {
     LaunchedEffect(Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
-                HomeContract.Effect.NavigateToBiometric -> {
-                    navController.navigate(AppRoute.BiometricHome)
+                BiometricContract.Effect.NavigatePatternLock  -> {
+                    navController.navigate(AppRoute.PatternLock)
                 }
-                HomeContract.Effect.NavigateToMap -> {
-                    navController.navigate(AppRoute.MapRoute)
-                }
+
             }
 //                HomeContract.Effect.NavigateToHome -> {
 //                    navController.popBackStack()

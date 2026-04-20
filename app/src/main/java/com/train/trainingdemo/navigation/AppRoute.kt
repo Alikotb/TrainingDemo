@@ -14,5 +14,7 @@ sealed class AppRoute {
     object BiometricHome : AppRoute()
     @Serializable
     object PatternLock : AppRoute()
+    @Serializable
+    object FingerPoint : AppRoute()
 
 }

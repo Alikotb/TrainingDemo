@@ -69,6 +69,10 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.56.2")
     ksp("com.google.dagger:hilt-android-compiler:2.56.2")
 
+
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+// Latest as of now
+
 //    implementation ("com.github.AbyssSpecter:ComposeLock:1.0.0")
 
 

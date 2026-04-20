@@ -5,6 +5,7 @@ interface HomeContract {
     sealed class Intent {
         object NavigateToMap : Intent()
         object NavigateToBiometric : Intent()
+        object NavigateToPayment : Intent()
 //        object SaveFirstTime : Intent()
 
     }
@@ -12,5 +13,6 @@ interface HomeContract {
     sealed interface Effect {
         object NavigateToMap : Effect
         object NavigateToBiometric : Effect
+        object NavigateToPayment : Effect
     }
 }

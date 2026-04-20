@@ -16,5 +16,7 @@ sealed class AppRoute {
     object PatternLock : AppRoute()
     @Serializable
     object FingerPoint : AppRoute()
+    @Serializable
+    object Payment : AppRoute()
 
 }

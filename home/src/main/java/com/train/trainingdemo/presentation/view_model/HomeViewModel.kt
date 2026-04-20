@@ -23,6 +23,9 @@ class HomeViewModel @Inject constructor(
             HomeContract.Intent.NavigateToBiometric -> {
                 emitEffect(HomeContract.Effect.NavigateToBiometric)
             }
+            HomeContract.Intent.NavigateToPayment -> {
+                emitEffect(HomeContract.Effect.NavigateToPayment)
+            }
         }
 //        when (intent) {
 //            HomeContract.Intent.NavigateToNext -> {

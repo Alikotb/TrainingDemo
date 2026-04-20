@@ -92,6 +92,7 @@ dependencies {
 
     //lotti
     implementation("com.airbnb.android:lottie-compose:6.6.9")
+    implementation(libs.stripe.android)
 //    implementation(project(":splash-module"))
 
     //connect modules
@@ -102,4 +103,5 @@ dependencies {
     implementation(project(":map"))
     implementation(project(":biometric"))
     implementation(project(":common"))
+    implementation(project(":payment"))
 }

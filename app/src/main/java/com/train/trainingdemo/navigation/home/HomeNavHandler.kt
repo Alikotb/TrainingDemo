@@ -1,4 +1,5 @@
 package com.train.trainingdemo.navigation.home
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
@@ -20,17 +21,10 @@ fun HomeNavHandler(
                 HomeContract.Effect.NavigateToMap -> {
                     navController.navigate(AppRoute.MapRoute)
                 }
+                HomeContract.Effect.NavigateToPayment -> {
+                    navController.navigate(AppRoute.Payment)
+                }
             }
-//                HomeContract.Effect.NavigateToHome -> {
-//                    navController.popBackStack()
-//                    navController.navigate(AppRoute.HomeRoute)
-//                }
-//
-//                HomeContract.Effect.NavigateToOnBoarding -> {
-////                    navController.popBackStack()
-////                    navController.navigate(AppRoute.OnBoardingRoute)
-//                }
-//            }
         }
     }
 }

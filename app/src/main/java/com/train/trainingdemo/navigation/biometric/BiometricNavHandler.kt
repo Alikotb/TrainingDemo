@@ -17,18 +17,11 @@ fun BiometricNavHandler(
                 BiometricContract.Effect.NavigatePatternLock  -> {
                     navController.navigate(AppRoute.PatternLock)
                 }
+                BiometricContract.Effect.NavigateFingerPoint  -> {
+                    navController.navigate(AppRoute.FingerPoint)
+                }
 
             }
-//                HomeContract.Effect.NavigateToHome -> {
-//                    navController.popBackStack()
-//                    navController.navigate(AppRoute.HomeRoute)
-//                }
-//
-//                HomeContract.Effect.NavigateToOnBoarding -> {
-////                    navController.popBackStack()
-////                    navController.navigate(AppRoute.OnBoardingRoute)
-//                }
-//            }
         }
     }
 }

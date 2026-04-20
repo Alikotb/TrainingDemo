@@ -19,6 +19,9 @@ class BiometricViewModel @Inject constructor(
             BiometricContract.Intent.NavigatePatternLock -> {
                 emitEffect(BiometricContract.Effect.NavigatePatternLock)
             }
+            BiometricContract.Intent.NavigateFingerPoint -> {
+                emitEffect(BiometricContract.Effect.NavigateFingerPoint)
+            }
         }
 //        when (intent) {
 //            HomeContract.Intent.NavigateToNext -> {

@@ -31,7 +31,7 @@ fun ComposeLock(
     dotsSize: Float,
     linesColor: Color,
     linesStroke: Float,
-    paddingAround: Float = 60f, // Controls the space between the canvas edge and the dots
+    paddingAround: Float = 60f,
     animationDuration: Int = 200,
     animationDelay: Long = 100,
     callback: ComposeLockCallback

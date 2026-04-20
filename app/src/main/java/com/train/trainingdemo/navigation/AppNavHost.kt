@@ -13,6 +13,7 @@ import com.train.trainingdemo.navigation.biometric.BiometricNavHandler
 import com.train.trainingdemo.navigation.home.HomeNavHandler
 import com.train.trainingdemo.navigation.spalsh.SplashNavHandler
 import com.train.trainingdemo.presentation.screens.BiometricHomeScreen
+import com.train.trainingdemo.presentation.screens.FingerPointScreen
 import com.train.trainingdemo.presentation.screens.HomeScreen
 import com.train.trainingdemo.presentation.screens.MapScreen
 import com.train.trainingdemo.presentation.screens.PatternLockScreen
@@ -70,6 +71,16 @@ fun AppNavHost(
 
             val viewModel = hiltViewModel<BiometricViewModel>()
             PatternLockScreen(
+                modifier = modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(), viewModel
+            )
+        }
+
+        composable<AppRoute.FingerPoint> {
+
+            val viewModel = hiltViewModel<BiometricViewModel>()
+            FingerPointScreen(
                 modifier = modifier
                     .padding(innerPadding)
                     .fillMaxSize(), viewModel

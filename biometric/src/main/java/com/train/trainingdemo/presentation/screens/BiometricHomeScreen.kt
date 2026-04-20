@@ -28,6 +28,16 @@ fun BiometricHomeScreen(modifier: Modifier = Modifier, viewModel: BiometricViewM
                 }
             )
         }
+
+        item {
+            Spacer(Modifier.height(32.dp))
+            AppBtn(
+                text = "go to Finger point",
+                onClick = {
+                    viewModel.onIntent(BiometricContract.Intent.NavigateFingerPoint)
+                }
+            )
+        }
     }
 
 

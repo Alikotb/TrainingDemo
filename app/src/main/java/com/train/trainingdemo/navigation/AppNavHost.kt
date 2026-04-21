@@ -20,18 +20,23 @@ import com.stripe.android.Stripe
 import com.stripe.android.model.ConfirmPaymentIntentParams
 import com.train.trainingdemo.navigation.biometric.BiometricNavHandler
 import com.train.trainingdemo.navigation.home.HomeNavHandler
+import com.train.trainingdemo.navigation.mlkit.MLKitNavHandler
 import com.train.trainingdemo.navigation.spalsh.SplashNavHandler
 import com.train.trainingdemo.payment.presentation.contract.PaymentEffect
 import com.train.trainingdemo.payment.presentation.screens.PaymentScreen
 import com.train.trainingdemo.payment.presentation.viewmodel.PaymentViewModel
 import com.train.trainingdemo.presentation.screens.BiometricHomeScreen
 import com.train.trainingdemo.presentation.screens.HomeScreen
+import com.train.trainingdemo.presentation.screens.MLKitHomeScreen
 import com.train.trainingdemo.presentation.screens.MapScreen
 import com.train.trainingdemo.presentation.screens.SplashScreen
+import com.train.trainingdemo.presentation.screens.TranslateScreen
 import com.train.trainingdemo.presentation.view_model.BiometricViewModel
 import com.train.trainingdemo.presentation.view_model.HomeViewModel
+import com.train.trainingdemo.presentation.view_model.MLKitViewModel
 import com.train.trainingdemo.presentation.view_model.MapViewModel
 import com.train.trainingdemo.presentation.view_model.SplashViewModel
+import com.train.trainingdemo.presentation.view_model.TranslateViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -77,8 +82,6 @@ fun AppNavHost(
             val viewModel = hiltViewModel<PaymentViewModel>()
             val state by viewModel.state.collectAsState()
             
-            // --- REAL STRIPE INTEGRATION ---
-            // In a real production app, the Stripe key comes from your backend.
             val stripe = remember { Stripe(context, "pk_test_51BTj7S2eX4qn7p00nU8N7a7p") }
             
             LaunchedEffect(Unit) {
@@ -86,17 +89,14 @@ fun AppNavHost(
                     when (effect) {
                         is PaymentEffect.ConfirmStripePayment -> {
                             val params = ConfirmPaymentIntentParams.create(effect.clientSecret)
-                            // confirmPayment triggers the 3DS challenge if needed
-                            // stripeAccountId is used for Connected Accounts (e.g. marketplaces)
-                            // Omit it if you're charging directly to your account.
                             stripe.confirmPayment(
                                 context as FragmentActivity,
                                 params,
-                                stripeAccountId = effect.stripeAccountId // null by default for direct charges
+                                stripeAccountId = effect.stripeAccountId
                             )
                         }
                         is PaymentEffect.NavigateToSuccess -> {
-                            navController.navigate(AppRoute.SplashRoute) { // Or Success screen
+                            navController.navigate(AppRoute.SplashRoute) {
                                 popUpTo(AppRoute.HomeRoute) { inclusive = false }
                             }
                         }
@@ -112,6 +112,24 @@ fun AppNavHost(
                 state = state,
                 onIntent = viewModel::handleIntent,
                 onBackClick = { navController.popBackStack() }
+            )
+        }
+
+        composable<AppRoute.MLKitHome> {
+            val viewModel = hiltViewModel<MLKitViewModel>()
+            MLKitNavHandler(navController = navController, viewModel = viewModel)
+            MLKitHomeScreen(
+                modifier = modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(), viewModel
+            )
+        }
+        composable<AppRoute.Translate> {
+            val viewModel = hiltViewModel<TranslateViewModel>()
+            TranslateScreen(
+                modifier = modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(), viewModel
             )
         }
     }

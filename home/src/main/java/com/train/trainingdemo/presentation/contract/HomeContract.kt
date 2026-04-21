@@ -6,6 +6,7 @@ interface HomeContract {
         object NavigateToMap : Intent()
         object NavigateToBiometric : Intent()
         object NavigateToPayment : Intent()
+        object NavigateToMLKit : Intent()
 //        object SaveFirstTime : Intent()
 
     }
@@ -14,5 +15,6 @@ interface HomeContract {
         object NavigateToMap : Effect
         object NavigateToBiometric : Effect
         object NavigateToPayment : Effect
+        object NavigateToMLKit : Effect
     }
 }

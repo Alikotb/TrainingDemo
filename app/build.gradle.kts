@@ -104,4 +104,5 @@ dependencies {
     implementation(project(":biometric"))
     implementation(project(":common"))
     implementation(project(":payment"))
+    implementation(project(":mlkit"))
 }

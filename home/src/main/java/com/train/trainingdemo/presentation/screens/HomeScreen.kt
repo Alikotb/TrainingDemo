@@ -60,6 +60,15 @@ fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
                 }
             )
         }
+        item {
+            Spacer(Modifier.height(16.dp))
+            AppBtn(
+                text = "go to MLKit",
+                onClick = {
+                    viewModel.onIntent(HomeContract.Intent.NavigateToMLKit)
+                }
+            )
+        }
     }
 
 

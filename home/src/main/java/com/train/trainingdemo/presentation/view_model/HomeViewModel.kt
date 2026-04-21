@@ -26,6 +26,9 @@ class HomeViewModel @Inject constructor(
             HomeContract.Intent.NavigateToPayment -> {
                 emitEffect(HomeContract.Effect.NavigateToPayment)
             }
+            HomeContract.Intent.NavigateToMLKit -> {
+            emitEffect(HomeContract.Effect.NavigateToMLKit)
+        }
         }
 //        when (intent) {
 //            HomeContract.Intent.NavigateToNext -> {

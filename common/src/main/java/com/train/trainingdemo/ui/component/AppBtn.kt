@@ -15,11 +15,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun AppBtn(modifier: Modifier = Modifier, onClick: () -> Unit={}, text:String="",) {
+fun AppBtn(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    text: String = "",
+    enabled: Boolean = true
+) {
     Button(
         shape = RoundedCornerShape(8.dp),
         onClick = onClick,
-        modifier = Modifier
+        enabled = enabled,
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
             .height(50.dp),
@@ -28,12 +34,10 @@ fun AppBtn(modifier: Modifier = Modifier, onClick: () -> Unit={}, text:String=""
             contentColor = Color.White,
         ),
     ) {
-
-            Text(
-                text = text,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-            )
-
+        Text(
+            text = text,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+        )
     }
 }

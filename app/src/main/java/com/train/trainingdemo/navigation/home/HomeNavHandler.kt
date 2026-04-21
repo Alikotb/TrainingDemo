@@ -24,6 +24,9 @@ fun HomeNavHandler(
                 HomeContract.Effect.NavigateToPayment -> {
                     navController.navigate(AppRoute.Payment)
                 }
+                HomeContract.Effect.NavigateToMLKit -> {
+                navController.navigate(AppRoute.MLKitHome)
+            }
             }
         }
     }

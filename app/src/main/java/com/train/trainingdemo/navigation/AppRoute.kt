@@ -19,4 +19,9 @@ sealed class AppRoute {
     @Serializable
     object Payment : AppRoute()
 
+    @Serializable
+    object MLKitHome : AppRoute()
+    @Serializable
+    object Translate : AppRoute()
+
 }

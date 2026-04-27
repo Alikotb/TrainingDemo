@@ -60,6 +60,7 @@ class PaymentViewModelTest {
 
     @Test
     fun `LoadData intent should update state with payment methods and summary`() = runTest {
+        viewModel.handleIntent(PaymentIntent.LoadData)
         testDispatcher.scheduler.advanceUntilIdle()
         
         val state = viewModel.state.value
@@ -70,6 +71,9 @@ class PaymentViewModelTest {
 
     @Test
     fun `ProcessPayment success should emit NavigateToSuccess effect`() = runTest {
+        // Initial load to have a selected payment method
+        testDispatcher.scheduler.advanceUntilIdle()
+
         coEvery { processPaymentUseCase(any(), any()) } returns Result.success(null)
         
         val effects = mutableListOf<PaymentEffect>()

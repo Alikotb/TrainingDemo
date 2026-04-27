@@ -1,4 +1,3 @@
-/*
 package com.train.trainingdemo.payment.presentation.viewmodel
 
 import com.google.common.truth.Truth.assertThat
@@ -7,6 +6,7 @@ import com.train.trainingdemo.payment.domain.model.PaymentMethod
 import com.train.trainingdemo.payment.domain.usecase.GetOrderSummaryUseCase
 import com.train.trainingdemo.payment.domain.usecase.GetPaymentMethodsUseCase
 import com.train.trainingdemo.payment.domain.usecase.ProcessPaymentUseCase
+import com.train.trainingdemo.payment.domain.usecase.ValidatePromoCodeUseCase
 import com.train.trainingdemo.payment.presentation.contract.PaymentEffect
 import com.train.trainingdemo.payment.presentation.contract.PaymentIntent
 import io.mockk.coEvery
@@ -31,6 +31,7 @@ class PaymentViewModelTest {
     private val getPaymentMethodsUseCase: GetPaymentMethodsUseCase = mockk()
     private val getOrderSummaryUseCase: GetOrderSummaryUseCase = mockk()
     private val processPaymentUseCase: ProcessPaymentUseCase = mockk()
+    private val validatePromoCodeUseCase: ValidatePromoCodeUseCase = mockk()
     
     private val testDispatcher = StandardTestDispatcher()
 
@@ -42,12 +43,13 @@ class PaymentViewModelTest {
         val summary = OrderSummary(100.0, 10.0, 5.0, 2.0, 97.0)
         
         every { getPaymentMethodsUseCase() } returns flowOf(methods)
-        every { getOrderSummaryUseCase() } returns flowOf(summary)
+        every { getOrderSummaryUseCase(any()) } returns flowOf(summary)
         
         viewModel = PaymentViewModel(
             getPaymentMethodsUseCase,
             getOrderSummaryUseCase,
-            processPaymentUseCase
+            processPaymentUseCase,
+            validatePromoCodeUseCase
         )
     }
 
@@ -68,7 +70,7 @@ class PaymentViewModelTest {
 
     @Test
     fun `ProcessPayment success should emit NavigateToSuccess effect`() = runTest {
-        coEvery { processPaymentUseCase(any()) } returns Result.success(Unit)
+        coEvery { processPaymentUseCase(any(), any()) } returns Result.success(null)
         
         val effects = mutableListOf<PaymentEffect>()
         val job = launch(testDispatcher) {
@@ -96,4 +98,3 @@ class PaymentViewModelTest {
         job.cancel()
     }
 }
-*/

@@ -3,20 +3,15 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "com.train.trainingdemo"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    namespace = "com.train.trainingdemo.biometric"
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -37,8 +32,8 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    kotlin {
-        jvmToolchain(11)
+    buildFeatures {
+        compose = true
     }
 }
 
@@ -46,10 +41,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
-//    androidTestImplementation(libs.androidx.espresso.core)
-
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -58,24 +49,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-//    androidTestImplementation(platform(libs.androidx.compose.bom))
-//    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
-//    debugImplementation(libs.androidx.compose.ui.test.manifest)
-
 
     // hilt
+    implementation(libs.hilt.android)
     implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
-    implementation("com.google.dagger:hilt-android:2.56.2")
-    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
-
+    ksp(libs.hilt.compiler)
 
     implementation("androidx.biometric:biometric:1.2.0-alpha05")
-// Latest as of now
-
-//    implementation ("com.github.AbyssSpecter:ComposeLock:1.0.0")
-
 
     implementation(project(":common"))
-
 }

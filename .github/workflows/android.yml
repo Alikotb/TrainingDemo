@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew lintDebug
 
       - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest --continue
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
@@ -39,8 +39,8 @@ jobs:
           path: app/build/outputs/apk/debug/app-debug.apk
 
   instrumented-tests:
-    runs-on: macos-latest
-    timeout-minutes: 45
+    runs-on: macos-13
+    timeout-minutes: 60
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -53,9 +53,14 @@ jobs:
           cache: gradle
 
       - name: Run Instrumented Tests
-        uses: reactive-circus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          target: google_apis
+          arch: x86_64
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
           script: ./gradlew connectedDebugAndroidTest
 
   release-build:

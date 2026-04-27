@@ -36,7 +36,12 @@ class PaymentViewModel @Inject constructor(
     fun handleIntent(intent: PaymentIntent) {
         when (intent) {
             is PaymentIntent.LoadData -> loadData()
-            is PaymentIntent.SelectPaymentMethod -> _state.update { it.copy(selectedPaymentMethod = intent.method) }
+            is PaymentIntent.SelectPaymentMethod -> {
+                _state.update { it.copy(selectedPaymentMethod = intent.method) }
+                if (intent.method is PaymentMethod.AddNewCard) {
+                    viewModelScope.launch { _effect.emit(PaymentEffect.NavigateToAddCard) }
+                }
+            }
             is PaymentIntent.EnterPromoCode -> _state.update { it.copy(promoCode = intent.code) }
             is PaymentIntent.ApplyPromoCode -> applyPromoCode()
             is PaymentIntent.RemovePromoCode -> removePromoCode()

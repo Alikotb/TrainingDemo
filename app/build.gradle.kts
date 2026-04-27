@@ -2,23 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
+    alias(libs.plugins.kotlinx.serialization)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.train.trainingdemo"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.train.trainingdemo"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -43,9 +39,6 @@ android {
         jvmTarget = "11"
     }
 
-    kotlin {
-        jvmToolchain(11)
-    }
     buildFeatures {
         compose = true
     }
@@ -69,35 +62,19 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     //navigation
-    val nav_version = "2.9.6"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation(libs.androidx.navigation.compose)
 
     //serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation(libs.kotlinx.serialization.json)
 
-    //live data
-//    implementation("androidx.compose.runtime:runtime-livedata:1.9.2")
-
-    implementation("com.google.dagger:hilt-android:2.56.2")
+    implementation(libs.hilt.android)
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
-//
-//    // Hilt Testing
-//    androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.2")
-//    kspAndroidTest("com.google.dagger:hilt-android-compiler:2.56.2")
-//
-//    testImplementation("com.google.dagger:hilt-android-testing:2.56.2")
-//    kspTest("com.google.dagger:hilt-android-compiler:2.56.2")
-
+    ksp(libs.hilt.compiler)
 
     //lotti
     implementation("com.airbnb.android:lottie-compose:6.6.9")
     implementation(libs.stripe.android)
-//    implementation(project(":splash-module"))
 
-    //connect modules
-//    implementation(project(":home-module"))
-//    implementation(project(":search-module"))
     implementation(project(":splash"))
     implementation(project(":home"))
     implementation(project(":map"))
